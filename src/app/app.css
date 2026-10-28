@@ -1,0 +1,14 @@
+.app-container {
+  min-height: 100dvh;
+}
+
+.app-main {
+  min-height: calc(100dvh - 128px); /* en-tête + pied de page */
+}
+
+/* Lien actif du menu mobile. */
+mat-sidenav {
+  a.active {
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,23 @@
+    <section id="projects" class="max-w-[1200px] mx-auto px-6 py-6">
+      <h2 class="font-hand text-4xl">Mes projets</h2>
+      <p class="text-neutral-600 dark:text-neutral-400 mt-2">Applications web, produits mobiles et démonstrations interactives.</p>
+
+      <div class="flex flex-wrap gap-3 my-8">
+        @for (filter of filters; track filter) {
+          <button
+            (click)="setFilter(filter)"
+            [class]="filter === 'all' 
+              ? 'px-4 py-2 rounded-full border border-brand bg-brand text-white cursor-pointer transition-all duration-200' 
+              : 'px-4 py-2 rounded-full border border-neutral-200 dark:border-neutral-800 bg-transparent text-neutral-600 dark:text-neutral-400 hover:bg-brand hover:border-brand hover:text-white cursor-pointer transition-all duration-200'"
+          >
+            {{ filter }}
+          </button>
+        }
+      </div>
+
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-4">
+        @for (project of projectService.filteredProjects(); track project.id) {
+          <app-project-card [project]="project" />
+        }
+      </div>
+    </section>

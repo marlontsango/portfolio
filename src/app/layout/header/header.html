@@ -1,0 +1,53 @@
+<header class="sticky top-0 z-50 bg-cream/90 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5" aria-label="Navigation principale">
+    <a href="#home" class="text-3xl leading-none" (click)="select('home')">
+      <span class="font-semibold text-brand">M</span><span class="font-normal">arlon.</span>
+    </a>
+
+    <ul class="hidden items-center gap-10 text-sm font-medium md:flex">
+      <li *ngFor="let l of links">
+        <a
+          [href]="'#' + l.id"
+          (click)="select(l.id)"
+          [class.text-brand]="active === l.id"
+          class="transition-colors hover:text-brand"
+        >
+          <span *ngIf="active === l.id" class="mr-2 text-brand/70">(</span>{{ l.label }}<span *ngIf="active === l.id" class="ml-2 text-brand/70">)</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <a
+        href="assets/resume/CV Marlon Junior — Français (PDF).pdf"
+        download
+        class="hidden rounded-md bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark sm:inline-block"
+      >
+        Télécharger mon CV
+      </a>
+      <button
+        type="button"
+        class="rounded-md p-2 md:hidden"
+        (click)="menuOpen = !menuOpen"
+        [attr.aria-expanded]="menuOpen"
+        aria-label="Ouvrir le menu"
+      >
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path *ngIf="!menuOpen" d="M4 7h16M4 12h16M4 17h16" />
+          <path *ngIf="menuOpen" d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+      <app-theme-toggle />
+
+    </div>
+  </nav>
+
+  <ul *ngIf="menuOpen" class="space-y-1 border-t border-ink/10 px-6 pb-5 pt-3 text-sm font-medium md:hidden">
+    <li *ngFor="let l of links">
+      <a [href]="'#' + l.id" (click)="select(l.id)" class="block py-2" [class.text-brand]="active === l.id">{{ l.label }}</a>
+    </li>
+    <li>
+      <a href="assets/resume/CV Marlon Junior — Français (PDF).pdf" download class="mt-2 inline-block rounded-md bg-brand px-5 py-2.5 font-semibold text-white">Télécharger mon CV</a>
+    </li>
+  </ul>
+</header>

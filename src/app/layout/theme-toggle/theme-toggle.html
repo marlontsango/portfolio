@@ -1,0 +1,7 @@
+    <button 
+      (click)="toggle()" 
+      aria-label="Changer de thème"
+      class="flex items-center justify-center bg-transparent border border-neutral-200 dark:border-neutral-800 rounded-full w-[42px] height-[42px] cursor-pointer text-xl transition-transform duration-200 hover:scale-108"
+    >
+      {{ isDark() ? '☀️' : '🌙' }}
+    </button>

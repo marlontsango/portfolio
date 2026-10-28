@@ -1,0 +1,62 @@
+<section  class="mx-auto max-w-3xl px-6 py-16">
+  <a routerLink="/projets" class="inline-flex items-center gap-2 text-sm font-medium text-brand transition-colors hover:text-brand-dark">
+    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M15 19l-7-7 7-7" />
+    </svg>
+    Retour aux projets
+  </a>
+
+  @if (project(); as project) {
+    <article class="mt-6 rounded-xl bg-surface p-8 shadow-lg shadow-ink/5">
+      <header>
+        <h1 class="text-3xl font-semibold">{{ project.title }}</h1>
+        <p class="mt-2 text-sm text-ink/70">{{ categoryLabel() }} · {{ project.year }}</p>
+      </header>
+
+      <p class="mt-6 text-sm leading-relaxed">{{ project.description }}</p>
+
+      <h2 class="mt-10 font-hand text-2xl">Technologies</h2>
+      <ul class="mt-4 flex flex-wrap gap-2" aria-label="Technologies utilisées">
+        @for (technology of project.technologies; track technology) {
+          <li class="rounded-full bg-sun/20 px-3 py-1 text-xs font-medium">{{ technology }}</li>
+        }
+      </ul>
+
+      @if (project.demoUrl || project.sourceUrl) {
+        <div class="mt-10 flex flex-wrap gap-3">
+          @if (project.demoUrl) {
+            <a [href]="project.demoUrl" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" />
+              </svg>
+              Voir la démo
+            </a>
+          }
+          @if (project.sourceUrl) {
+            <a [href]="project.sourceUrl" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 rounded-md border border-brand px-5 py-2.5 text-sm font-semibold text-brand transition-colors hover:bg-brand/10">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 8l-4 4 4 4M16 8l4 4-4 4" />
+              </svg>
+              Code source
+            </a>
+          }
+        </div>
+      }
+    </article>
+  } @else {
+    <div class="mt-6 rounded-xl bg-surface p-8 text-center shadow-lg shadow-ink/5">
+      <svg class="mx-auto h-10 w-10 text-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 8v5M12 16.5v.01" />
+      </svg>
+      <h1 class="mt-4 text-2xl font-semibold">Projet introuvable</h1>
+      <p class="mt-2 text-sm">Aucun projet ne correspond à l'identifiant « {{ id() }} ».</p>
+      <a routerLink="/projets"
+         class="mt-6 inline-block rounded-md bg-brand px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-dark">
+        Voir tous les projets
+      </a>
+    </div>
+  }
+</section>

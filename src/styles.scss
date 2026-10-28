@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+/* Permet aussi d'utiliser dark:... si besoin plus tard */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Palettes jour / nuit */
+:root {
+  --cream: #f8f7f2;
+  --ink: #12313f;
+  --surface: #ffffff;
+  --brand: #26716b;
+  --brand-dark: #1b5651;
+}
+.dark {
+  color-scheme: dark;
+  --cream: #0f1a20;
+  --ink: #e8eef0;
+  --surface: #172730;
+  --brand: #2f8a82;
+  --brand-dark: #26716b;
+}
+
+/* "inline" : les utilitaires (bg-cream, text-ink…) lisent la variable en direct,
+   donc ils changent dès que la classe .dark est posée sur <html> */
+@theme inline {
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-sun: #f0b23a;
+}
+
+@theme {
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-hand: 'Kalam', cursive;
+  --font-script: 'Kaushan Script', cursive;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+  }
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+}

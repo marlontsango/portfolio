@@ -19,6 +19,7 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true
   },
+  "include":["src/**/*", "tests/**/*"],
   "files": [],
   "references": [
     {
