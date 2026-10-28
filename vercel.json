@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist//home/marlontsango/Documents/PERSONAL PROJECTS/Mon_Porfolio/my-porfolio/dist/my-porfolio/browser",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
